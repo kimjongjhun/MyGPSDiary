@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zlaqh.mygpsdiary.RegisterActivity"
+    android:background="@drawable/mountain_river">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="bottom|center_horizontal">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Please enter your email address"
+            android:layout_margin="5dp"
+            android:id="@+id/RAemailET"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Please enter a password"
+            android:layout_margin="5dp"
+            android:id="@+id/RApasswordET"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="top|center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="register"
+            android:layout_margin="5dp"
+            android:onClick="register"
+            android:id="@+id/registerRA" />
+
+        <TextView
+            android:text="Already Have an Account?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/already_have"
+            android:textAlignment="center"
+            android:textColor="#ffffff"/>
+
+        <TextView
+            android:text="Sign In Here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView.sign_in_here"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:onClick="goToMain"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+</LinearLayout>

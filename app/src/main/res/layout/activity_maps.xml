@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_maps"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zlaqh.mygpsdiary.MapsActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:context="com.zlaqh.mygpsdiary.MapsActivity">
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.zlaqh.mygpsdiary.MapsActivity" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:layout_weight="8"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sign out"
+            android:textSize="18sp"
+            android:onClick="signOut"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/load_old_location_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Load old locations"
+            android:textSize="18sp"
+            android:onClick="loadOldLocation"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/save_new_location_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="save new location"
+            android:textSize="18sp"
+            android:onClick="saveNewLocation"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>
