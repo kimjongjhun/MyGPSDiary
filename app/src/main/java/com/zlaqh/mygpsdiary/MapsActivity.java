@@ -91,7 +91,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //save a new location
     public void saveNewLocation(View view) {
-        startActivity(new Intent(getApplicationContext(), SaveNewLocationActivity.class));
+        // sending the latitude and longitude to the save activity
+        Intent save = new Intent(this, SaveNewLocationActivity.class);
+        Bundle bundle = new Bundle();
+
+        bundle.putDouble("latitude", myLatitude);
+        bundle.putDouble("longitude", myLongitude);
+
+        save.putExtras(bundle);
+
+        startActivity(save);
     }
 
     public void loadOldLocation(View view) {

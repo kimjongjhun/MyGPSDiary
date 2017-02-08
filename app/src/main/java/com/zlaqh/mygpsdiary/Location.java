@@ -10,14 +10,16 @@ public class Location {
 
     String date;
 
-    public Location () {
+    public Location() {
 
     }
 
-    public Location(String name, String note, String date) {
+    public Location(String name, String note, String date, double latitude, double longitude) {
         this.name = name;
         this.note = note;
         this.date = date;
+        this.lat = latitude;
+        this.lng = longitude;
     }
 
 }

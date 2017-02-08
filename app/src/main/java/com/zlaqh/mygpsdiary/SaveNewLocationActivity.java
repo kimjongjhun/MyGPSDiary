@@ -1,9 +1,11 @@
 package com.zlaqh.mygpsdiary;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +25,7 @@ public class SaveNewLocationActivity extends AppCompatActivity {
     SimpleDateFormat simpleDateFormat;
     String date;
 
-    // trying something out
+    // this is to save to the current user
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -33,6 +35,8 @@ public class SaveNewLocationActivity extends AppCompatActivity {
     String saveName, saveNote;
 
     String uid;
+
+    double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,12 @@ public class SaveNewLocationActivity extends AppCompatActivity {
         simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
         date = simpleDateFormat.format(calendar.getTime());
 
+        //declaring the bundle from maps activity
+        Bundle bundle = getIntent().getExtras();
+
+        latitude = bundle.getDouble("latitude");
+        longitude = bundle.getDouble("longitude");
+
     }
 
     public void saveLocation(View view) {
@@ -57,10 +67,16 @@ public class SaveNewLocationActivity extends AppCompatActivity {
 
         uid = user.getUid();
 
-        Location location = new Location(saveName, saveNote, date);
+        //saving the location
+        Location location = new Location(saveName, saveNote, date, latitude, longitude);
 
         DatabaseReference newRef = userID.child(uid).push();
         newRef.setValue(location);
+
+        //going back to the map
+        startActivity(new Intent(this, MapsActivity.class));
+        finish();
+        Toast.makeText(this, "Location Saved!", Toast.LENGTH_SHORT).show();
 
     }
 
