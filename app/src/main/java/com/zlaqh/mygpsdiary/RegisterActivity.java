@@ -61,8 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         createAccount(email, password);
 
-        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-        Toast.makeText(RegisterActivity.this, " Thank you for registering! \n Please Sign In ", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(RegisterActivity.this, MapsActivity.class));
+        Toast.makeText(RegisterActivity.this, " Thank you for registering! \n Enjoy the world!", Toast.LENGTH_SHORT).show();
         finish();
     }
 

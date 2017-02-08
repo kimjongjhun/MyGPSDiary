@@ -45,7 +45,7 @@
             android:id="@+id/load_old_location_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Load old locations"
+            android:text="Load old"
             android:textSize="18sp"
             android:onClick="loadOldLocation"
             android:layout_weight="1" />
@@ -54,7 +54,7 @@
             android:id="@+id/save_new_location_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="save new location"
+            android:text="save new"
             android:textSize="18sp"
             android:onClick="saveNewLocation"
             android:layout_weight="1" />
