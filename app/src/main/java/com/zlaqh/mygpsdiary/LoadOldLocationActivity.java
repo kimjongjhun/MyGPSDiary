@@ -36,7 +36,8 @@ public class LoadOldLocationActivity extends AppCompatActivity {
     ListView oldLocationList;
 
     //declaring an arraylist to hold location objects
-    public final ArrayList<Location> locationList = new ArrayList<>();;
+    public final ArrayList<Location> locationList = new ArrayList<>();
+    ;
 
     //trying something out
     public ArrayList<String> locationNames;
@@ -60,18 +61,13 @@ public class LoadOldLocationActivity extends AppCompatActivity {
                 //get children at this level
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
 
-                for (DataSnapshot child: children) {
+                for (DataSnapshot child : children) {
                     Location location = child.getValue(Location.class);
                     if (!locationNames.contains(location.name)) {
                         locationList.add(location);
                         locationNames.add(location.name);
                     }
                 }
-                //what i had
-//                Location value = dataSnapshot.getValue(Location.class);
-//                locationList.add(value);
-//                locationNames.add(value.name);
-//                Log.d(TAG, "value is: " + value.name);
             }
 
             @Override
@@ -81,30 +77,42 @@ public class LoadOldLocationActivity extends AppCompatActivity {
         });
 
         //putting the arraylist in the listview
-        ArrayAdapter<Location> arrayAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                locationList);
-
-        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<>(
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
                 locationNames);
 
-        oldLocationList.setAdapter(arrayAdapter1);
+        oldLocationList.setAdapter(arrayAdapter);
         oldLocationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog alertDialog = new AlertDialog.Builder(LoadOldLocationActivity.this).create();
                 alertDialog.setTitle("Location Information");
                 alertDialog.setMessage("Name: " + locationNames.get(position) +
-                "\n Note: " + locationList.get(position).note +
-                "\n Date and Time: " + locationList.get(position).date +
-                "\n Coordinates: " +locationList.get(position).lat +"," +locationList.get(position).lng);
+                        "\n Note: " + locationList.get(position).note +
+                        "\n Date and Time: " + locationList.get(position).date +
+                        "\n Coordinates: " + locationList.get(position).lat + "," + locationList.get(position).lng);
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
+                            }
+                        });
+                // to try and send coords to maps activity
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Show on Map",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(LoadOldLocationActivity.this, MapsActivity.class);
+                                Bundle bundle = new Bundle();
+
+                                bundle.putInt("method", 1);
+                                bundle.putDouble("latitude", locationList.get(position).lat);
+                                bundle.putDouble("longitude", locationList.get(position).lng);
+
+                                i.putExtras(bundle);
+
+                                startActivity(i);
+
                             }
                         });
                 alertDialog.show();
