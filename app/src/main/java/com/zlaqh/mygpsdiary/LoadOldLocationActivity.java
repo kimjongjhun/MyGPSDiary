@@ -1,10 +1,13 @@
 package com.zlaqh.mygpsdiary;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -59,8 +62,10 @@ public class LoadOldLocationActivity extends AppCompatActivity {
 
                 for (DataSnapshot child: children) {
                     Location location = child.getValue(Location.class);
-                    locationList.add(location);
-                    locationNames.add(location.name);
+                    if (!locationNames.contains(location.name)) {
+                        locationList.add(location);
+                        locationNames.add(location.name);
+                    }
                 }
                 //what i had
 //                Location value = dataSnapshot.getValue(Location.class);
@@ -87,6 +92,24 @@ public class LoadOldLocationActivity extends AppCompatActivity {
                 locationNames);
 
         oldLocationList.setAdapter(arrayAdapter1);
+        oldLocationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog alertDialog = new AlertDialog.Builder(LoadOldLocationActivity.this).create();
+                alertDialog.setTitle("Location Information");
+                alertDialog.setMessage("Name: " + locationNames.get(position) +
+                "\n Note: " + locationList.get(position).note +
+                "\n Date and Time: " + locationList.get(position).date +
+                "\n Coordinates: " +locationList.get(position).lat +"," +locationList.get(position).lng);
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
     }
 
     public void backToMap(View view) {
