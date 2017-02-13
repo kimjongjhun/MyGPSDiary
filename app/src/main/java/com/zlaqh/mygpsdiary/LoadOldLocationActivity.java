@@ -89,9 +89,9 @@ public class LoadOldLocationActivity extends AppCompatActivity {
                 AlertDialog alertDialog = new AlertDialog.Builder(LoadOldLocationActivity.this).create();
                 alertDialog.setTitle("Location Information");
                 alertDialog.setMessage("Name: " + locationNames.get(position) +
-                        "\n Note: " + locationList.get(position).note +
-                        "\n Date and Time: " + locationList.get(position).date +
-                        "\n Coordinates: " + locationList.get(position).lat + "," + locationList.get(position).lng);
+                        "\nNote: " + locationList.get(position).note +
+                        "\nDate and Time: " + locationList.get(position).date +
+                        "\nCoordinates: " + locationList.get(position).lat + "," + locationList.get(position).lng);
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
